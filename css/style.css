@@ -1,0 +1,121 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #323a5c;
+  background-color: #fffef9;
+}
+
+header {
+  background-color: #323a5c;
+  color: #ffffff;
+  padding: 1.5rem 2rem;
+  border-bottom: 6px solid #23283f;
+}
+
+header h1 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.6rem;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+header nav li {
+  margin-right: 1.25rem;
+}
+
+header nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+header nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.subject-section {
+  background-color: #eef2f5;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border-left: 4px solid #4a6572;
+}
+
+.subject-section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  color: #1e293b;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  color: #2c3e50;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+aside {
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  padding: 24px;
+  line-height: 1.6;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+aside h2 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+aside p {
+  margin: 0;
+  color: #334155;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f1f5f9;
+}
