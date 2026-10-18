@@ -11,15 +11,26 @@ body {
   background-color: #fffef9;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 header {
   background-color: #323a5c;
   color: #ffffff;
   padding: 1.5rem 2rem;
   border-bottom: 6px solid #23283f;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
 }
 
 header h1 {
-  margin: 0 0 0.75rem 0;
+  margin: 0;
   font-size: 1.6rem;
 }
 
@@ -27,11 +38,14 @@ header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  
   display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
 }
 
 header nav li {
-  margin-right: 1.25rem;
+  margin-right: 0; 
 }
 
 header nav a {
@@ -46,10 +60,14 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+.page-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  width: 100%;
 }
 
 .subject-section {
@@ -67,16 +85,17 @@ main {
   color: #1e293b;
 }
 
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
 .card {
   background-color: #ffffff;
   padding: 10px;
   border: 1px solid #cbd5e1;
   border-radius: 3px;
-  margin-bottom: 10px;
-}
-
-.card:last-child {
-  margin-bottom: 0;
 }
 
 .card h3 {
@@ -92,13 +111,12 @@ main {
 }
 
 aside {
-  max-width: 900px;
-  margin: 0 auto 2rem auto;
-  padding: 24px;
-  line-height: 1.6;
   background-color: #ffffff;
+  padding: 20px;
+  line-height: 1.6;
   border: 1px solid #cbd5e1;
   border-radius: 4px;
+  margin-top: 20px;
 }
 
 aside h2 {
@@ -118,4 +136,43 @@ footer {
   color: #64748b;
   border-top: 1px solid #e2e8f0;
   background-color: #f1f5f9;
+}
+
+@media (min-width: 600px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+  }
+
+  .page-layout {
+    padding: 1.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .page-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 24px;
+    align-items: start;
+    margin: 2rem auto;
+  }
+
+  aside {
+    margin-top: 0;
+    position: sticky;
+    top: 20px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
