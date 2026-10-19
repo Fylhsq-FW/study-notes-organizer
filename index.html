@@ -5,48 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Органайзер конспектів</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <!-- шапка з навігацією по предметах -->
-    <header class="site-header">
+   <header class="site-header">
         <h1>Органайзер конспектів</h1>
         <nav>
             <ul>
                 <li><a href="#math">Вища математика</a></li>
                 <li><a href="#programming">Програмування</a></li>
+                <li><a href="#databases">Бази даних</a></li>
+                <li><a href="#networks">Мережі</a></li>
+                <li><a href="#algorithms">Алгоритми</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="math" class="subject-section">
-            <h2>Вища математика</h2>
+            <section id="math" class="subject-section">
+                <h2>Вища математика</h2>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Тема 1: Інтеграли</h3>
+                        <p>Короткий опис або текст конспекту з інтегралів і т.д і т.п</p>
+                    </article>
+                    <article class="card">
+                        <h3>Тема 2: Похідні</h3>
+                        <p>Короткий опис або текст конспекту з похідних і т.д і т.п</p>
+                    </article>
+                </div>
+            </section>
 
-            <div class="cards-grid">
-                <article class="card">
-                    <h3>Тема 1: Інтеграли</h3>
-                    <p>Короткий опис або текст конспекту з інтегралів і т.д і т.п</p>
-                </article>
-                
-                <article class="card">
-                    <h3>Тема 2: Похідні</h3>
-                    <p>Короткий опис або текст конспекту з похідних і т.д і т.п</p>
-                </article>
-            </div>
-        </section>
+            <section id="programming" class="subject-section">
+                <h2>Програмування</h2>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Тема 1: С++</h3>
+                        <p>Короткий опис або текст конспекту з С++ і т.д і т.п</p>
+                    </article>
+                </div>
+            </section>
 
-        <section id="programming" class="subject-section">
-            <h2>Програмування</h2>
-            
-            <div class="cards-grid">
-                <article class="card">
-                    <h3>Тема 1: С++</h3>
-                    <p>Короткий опис або текст конспекту з С++ і т.д і т.п</p>
-                </article>
-            </div>
-        </section>
-    </main>
+            <section id="databases" class="subject-section">
+                <h2>Бази даних</h2>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Тема 1: SQL та реляційна модель</h3>
+                        <p>Основні поняття баз даних та проєктування схем.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="networks" class="subject-section">
+                <h2>Комп'ютерні мережі</h2>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Тема 1: Модель OSI</h3>
+                        <p>Рівні мережевої взаємодії та протоколи.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="algorithms" class="subject-section">
+                <h2>Алгоритми</h2>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Тема 1: Сортування</h3>
+                        <p>Алгоритми сортування масивів та їхня складність.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
 
     <!-- блок перегляду обраного конспекту -->
     <aside>

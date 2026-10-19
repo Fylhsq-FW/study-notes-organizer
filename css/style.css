@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: 'Jost', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: #323a5c;
@@ -175,4 +175,54 @@ footer {
   .cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+#math {
+  border-left-color: #2b6cb0;
+}
+#math h2 {
+  color: #2b6cb0;
+}
+#math .card {
+  border-color: #2b6cb0;
+}
+
+#programming {
+  border-left-color: #319795;
+}
+#programming h2 {
+  color: #319795;
+}
+#programming .card {
+  border-color: #319795;
+}
+
+#databases {
+  border-left-color: #805ad5;
+}
+#databases h2 {
+  color: #805ad5;
+}
+#databases .card {
+  border-color: #805ad5;
+}
+
+#networks {
+  border-left-color: #d69e2e;
+}
+#networks h2 {
+  color: #d69e2e;
+}
+#networks .card {
+  border-color: #d69e2e;
+}
+
+#algorithms {
+  border-left-color: #e53e3e;
+}
+#algorithms h2 {
+  color: #e53e3e;
+}
+#algorithms .card {
+  border-color: #e53e3e;
 }
