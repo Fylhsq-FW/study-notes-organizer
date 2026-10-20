@@ -78,7 +78,9 @@ if (staticCard) {
 }
 
 const notesCountElement = document.querySelector('#notes-count');
-
+/**
+ * функція рендерить конспекти на сторінці та оновлює загальну кількість конспектів
+ */
 function renderNotes(notesArray) {
     listContainer.innerHTML = '';
 
