@@ -178,51 +178,51 @@ footer {
 }
 
 #math {
-  border-left-color: #2b6cb0;
+  border-left-color: #1e4e8c;
 }
 #math h2 {
-  color: #2b6cb0;
+  color: #1e4e8c;
 }
 #math .card {
-  border-color: #2b6cb0;
+  border-color: #1e4e8c;
 }
 
 #programming {
-  border-left-color: #319795;
+  border-left-color: #1d5b5a;
 }
 #programming h2 {
-  color: #319795;
+  color: #1d5b5a;
 }
 #programming .card {
-  border-color: #319795;
+  border-color: #1d5b5a;
 }
 
 #databases {
-  border-left-color: #805ad5;
+  border-left-color: #553c9a;
 }
 #databases h2 {
-  color: #805ad5;
+  color: #553c9a;
 }
 #databases .card {
-  border-color: #805ad5;
+  border-color: #553c9a;
 }
 
 #networks {
-  border-left-color: #d69e2e;
+  border-left-color: #87550a;
 }
 #networks h2 {
-  color: #d69e2e;
+  color: #87550a;
 }
 #networks .card {
-  border-color: #d69e2e;
+  border-color: #87550a;
 }
 
 #algorithms {
-  border-left-color: #e53e3e;
+  border-left-color: #9b2c2c;
 }
 #algorithms h2 {
-  color: #e53e3e;
+  color: #9b2c2c;
 }
 #algorithms .card {
-  border-color: #e53e3e;
+  border-color: #9b2c2c;
 }
