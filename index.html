@@ -13,7 +13,7 @@
 <body>
     
     <!-- шапка з навігацією по предметах -->
-   <header class="site-header">
+    <header class="site-header">
         <h1>Органайзер конспектів</h1>
         <nav>
             <ul>
@@ -26,19 +26,26 @@
         </nav>
     </header>
     
-    <main>
-        <section class="subject-section">
-            <h2>Список конспектів</h2>
-            <p id="notes-count">Кількість конспектів: 0</p>
-            <div id="notes-list"></div>
-        </section>
-    </main>
-    
-    <!-- блок перегляду обраного конспекту -->
-    <aside>
-        <h2>Перегляд конспекту</h2>
-        <p>Тут буде повний текст обраного конспекту.</p>
-    </aside>
+    <div class="page-layout">
+        <main>
+            <section class="subject-section">
+                <h2>Список конспектів</h2>
+                <p id="notes-count">Кількість конспектів: 0</p>
+                <div id="notes-list" class="cards-grid">
+                    <article class="card">
+                        <h3>Приклад теми конспекту</h3>
+                        <p>Предмет: Приклад предмета</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+        
+        <!-- блок перегляду обраного конспекту -->
+        <aside>
+            <h2>Перегляд конспекту</h2>
+            <p>Тут буде повний текст обраного конспекту.</p>
+        </aside>
+    </div>
     
     <!-- підвал -->
     <footer>

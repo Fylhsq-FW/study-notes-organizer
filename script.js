@@ -4,24 +4,34 @@ console.log('script.js підключено');
 const notes = [
     { 
         subject: 'Вища математика', 
+        topic: 'Тема 1: Невизначені інтеграли',
         pages: 45, 
-        examSoon: true },
+        examSoon: true 
+    },
     { 
         subject: 'Програмування', 
+        topic: 'Тема 1: Вказівники та пам’ять у C++',
         pages: 60, 
-        examSoon: false },
+        examSoon: false 
+    },
     { 
         subject: 'Бази даних', 
+        topic: 'Тема 1: SQL та реляційна модель',
         pages: 30, 
-        examSoon: true },
+        examSoon: true 
+    },
     { 
         subject: "Комп'ютерні мережі", 
+        topic: 'Тема 1: Семирівнева модель OSI',
         pages: 25, 
-        examSoon: false },
+        examSoon: false 
+    },
     { 
         subject: 'Алгоритми', 
+        topic: 'Тема 1: Сортування масивів (QuickSort)',
         pages: 50, 
-        examSoon: true }
+        examSoon: true 
+    }
 ];
 
 /**
@@ -53,14 +63,12 @@ console.log('класифікація конспектів за термінам
 
 for (let i = 0; i < notes.length; i++) {
     let note = notes[i];
-    
     let classification = note.examSoon ? '🚨горить (іспит скоро)' : '✅спокійно';
-    
     console.log(`предмет: ${note.subject} — ${classification}`);
 }
 
 /**
- * стрілкова функція для розрахунку темпу підготовки:обчислює кількість сторінок, 
+ * стрілкова функція для розрахунку темпу підготовки: обчислює кількість сторінок, 
  * які потрібно читати щодня
  */
 const pagesPerDay = (pages, daysLeft) => Math.ceil(pages / daysLeft);
@@ -70,18 +78,23 @@ console.log('розрахунок темпу читання');
 console.log(`Вища математика (45 стор., 5 днів): ${pagesPerDay(45, 5)} стор./день`);
 console.log(`Програмування (60 стор., 4 дні): ${pagesPerDay(60, 4)} стор./день`);
 
+// вибір контейнера списку конспектів та видалення статичної заглушки саме з нього
 const listContainer = document.querySelector('#notes-list');
 
-const staticCard = document.querySelector('.card');
-if (staticCard) {
-    staticCard.remove();
+if (listContainer) {
+    const staticCard = listContainer.querySelector('.card');
+    if (staticCard) {
+        staticCard.remove();
+    }
 }
 
 const notesCountElement = document.querySelector('#notes-count');
+
 /**
  * функція рендерить конспекти на сторінці та оновлює загальну кількість конспектів
  */
 function renderNotes(notesArray) {
+    if (!listContainer) return;
     listContainer.innerHTML = '';
 
     notesArray.forEach(note => {
