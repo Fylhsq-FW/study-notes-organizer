@@ -1,7 +1,9 @@
+const API_URL = 'https://jsonplaceholder.typicode.com/posts?userId=2';
+
 console.log('script.js підключено');
 
 // дані конспектів
-const notes = [
+let notes = [
     { 
         subject: 'Вища математика', 
         topic: 'Тема 1: Невизначені інтеграли',
@@ -92,7 +94,7 @@ const notesCountElement = document.querySelector('#notes-count');
 
 /**
  * функція рендерить конспекти на сторінці та оновлює загальну кількість конспектів
- */
+*/
 function renderNotes(notesArray) {
     if (!listContainer) return;
     listContainer.innerHTML = '';
@@ -112,6 +114,9 @@ function renderNotes(notesArray) {
         const subjectP = document.createElement('p');
         subjectP.textContent = `Предмет: ${note.subject} (${note.pages} стор.)`;
 
+        const bodyP = document.createElement('p');
+        bodyP.textContent = note.body ? note.body : '';
+
         const examLabel = document.createElement('label');
         examLabel.classList.add('exam-checkbox-label');
 
@@ -123,7 +128,7 @@ function renderNotes(notesArray) {
 
         examLabel.append(examCheckbox, ' Скоро іспит');
 
-        card.append(title, subjectP, examLabel);
+        card.append(title, subjectP, bodyP, examLabel);
         listContainer.append(card);
     });
 
@@ -183,3 +188,50 @@ listContainer.addEventListener('change', (event) => {
         }
     }
 });
+
+const loadingStatus = document.querySelector('#loading-status');
+const errorMessage = document.querySelector('#error-message');
+const reloadBtn = document.querySelector('#reload-btn');
+
+// завантаження конспектів з  https://jsonplaceholder.typicode.com/posts?userId=2
+async function loadNotes() {
+    if (loadingStatus) loadingStatus.hidden = false;
+    if (errorMessage) errorMessage.hidden = true;
+    if (reloadBtn) reloadBtn.disabled = true;
+
+    try {
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error(`Помилка HTTP: статус ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Отримані дані з API:', data);
+
+        notes = data.map((item) => ({
+            subject: 'ПВЗ (API)',
+            topic: item.title,
+            body: item.body,
+            pages: Math.max(5, Math.round(item.body.length / 10)),
+            examSoon: false
+        }));
+
+        renderNotes(notes);
+    } catch (error) {
+        console.error('Помилка під час завантаження конспектів:', error);
+        if (errorMessage) {
+            errorMessage.textContent = 'Конспекти тимчасово недоступні';
+            errorMessage.hidden = false;
+        }
+    } finally {
+        if (loadingStatus) loadingStatus.hidden = true;
+        if (reloadBtn) reloadBtn.disabled = false;
+    }
+}
+
+if (reloadBtn) {
+    reloadBtn.addEventListener('click', loadNotes);
+}
+
+loadNotes();

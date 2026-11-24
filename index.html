@@ -56,10 +56,13 @@
                     <button type="submit" class="btn-submit">Додати конспект</button>
                 </form>
             </section>
-            
+
             <section class="subject-section">
                 <h2>Список конспектів</h2>
                 <p id="notes-count">Кількість конспектів: 0</p>
+                <button type="button" id="reload-btn" class="btn-submit">Оновити</button>
+                <p id="loading-status" hidden>Завантаження конспектів...</p>
+                <p id="error-message" style="color: #b91c1c; font-weight: 500;" hidden></p>
                 <div id="notes-list" class="cards-grid">
                     <article class="card">
                         <h3>Приклад теми конспекту</h3>
