@@ -97,7 +97,7 @@ function renderNotes(notesArray) {
     if (!listContainer) return;
     listContainer.innerHTML = '';
 
-    notesArray.forEach(note => {
+    notesArray.forEach((note, index) => {
         const card = document.createElement('article');
         card.classList.add('card');
         card.setAttribute('data-subject', note.subject);
@@ -110,9 +110,20 @@ function renderNotes(notesArray) {
         title.textContent = note.topic;
 
         const subjectP = document.createElement('p');
-        subjectP.textContent = `Предмет: ${note.subject}`;
+        subjectP.textContent = `Предмет: ${note.subject} (${note.pages} стор.)`;
 
-        card.append(title, subjectP);
+        const examLabel = document.createElement('label');
+        examLabel.classList.add('exam-checkbox-label');
+
+        const examCheckbox = document.createElement('input');
+        examCheckbox.type = 'checkbox';
+        examCheckbox.classList.add('exam-soon-checkbox');
+        examCheckbox.checked = note.examSoon;
+        examCheckbox.dataset.index = index;
+
+        examLabel.append(examCheckbox, ' Скоро іспит');
+
+        card.append(title, subjectP, examLabel);
         listContainer.append(card);
     });
 
@@ -122,3 +133,53 @@ function renderNotes(notesArray) {
 }
 
 renderNotes(notes);
+
+const noteForm = document.querySelector('#note-form');
+const subjectSelect = document.querySelector('#subject-select');
+const topicInput = document.querySelector('#topic-input');
+const pagesInput = document.querySelector('#pages-input');
+
+// обробник надсилання форми додавання нового конспекту без перезавантаження
+noteForm.addEventListener('submit', (event) => {
+    event.preventDefault(); 
+
+    const subject = subjectSelect.value; 
+    const topic = topicInput.value.trim();
+    const pages = Number(pagesInput.value);
+
+    const newNote = { 
+        subject: subject,
+        topic: topic,
+        pages: pages,
+        examSoon: false
+    };
+
+    notes.push(newNote);
+    renderNotes(notes);
+    noteForm.reset();
+});
+
+// додаткова клієнтська валідація поля теми конспекту (мінімум 3 символи)
+topicInput.addEventListener('input', () => {
+    const trimmedValue = topicInput.value.trim();
+    if (trimmedValue.length > 0 && trimmedValue.length < 3) {
+        topicInput.setCustomValidity('Тема конспекту має містити щонайменше 3 символи!');
+    } else {
+        topicInput.setCustomValidity('');
+    }
+});
+
+// делегування події change для перемикання статусу "Скоро іспит" у картках
+listContainer.addEventListener('change', (event) => {
+    if (event.target.classList.contains('exam-soon-checkbox')) {
+        const index = Number(event.target.dataset.index);
+        const isChecked = event.target.checked;
+
+        notes[index].examSoon = isChecked;
+
+        const card = event.target.closest('.card');
+        if (card) {
+            card.classList.toggle('exam-soon', isChecked);
+        }
+    }
+});

@@ -29,6 +29,35 @@
     <div class="page-layout">
         <main>
             <section class="subject-section">
+                <h2>Додати новий конспект</h2>
+                <form id="note-form" class="note-form">
+                    <div class="form-group">
+                        <label for="subject-select">Предмет:</label>
+                        <select id="subject-select" name="subject" required>
+                            <option value="">-- Оберіть предмет --</option>
+                            <option value="Вища математика">Вища математика</option>
+                            <option value="Програмування">Програмування</option>
+                            <option value="Бази даних">Бази даних</option>
+                            <option value="Комп'ютерні мережі">Комп'ютерні мережі</option>
+                            <option value="Алгоритми">Алгоритми</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic-input">Тема конспекту:</label>
+                        <input type="text" id="topic-input" name="topic" required pattern=".{3,}" placeholder="Наприклад: Тема 2: Матриці">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pages-input">Кількість сторінок:</label>
+                        <input type="number" id="pages-input" name="pages" required min="1" placeholder="15">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Додати конспект</button>
+                </form>
+            </section>
+            
+            <section class="subject-section">
                 <h2>Список конспектів</h2>
                 <p id="notes-count">Кількість конспектів: 0</p>
                 <div id="notes-list" class="cards-grid">
