@@ -229,3 +229,34 @@ footer {
 #algorithms .card {
   border-color: #9b2c2c;
 }
+
+.progress-wrapper {
+    margin: 12px 0 16px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background-color: #dce3e8;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    width: 0%;
+    background-color: #2f7d32;
+    border-radius: 999px;
+    transition: width 0.45s ease, background-color 0.3s ease;
+}
+
+.progress-bar__fill--complete {
+    background-color: #1b5e20;
+}

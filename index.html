@@ -84,6 +84,20 @@
                     </select>
                 </div>
 
+                <div class="progress-wrapper">
+                    <div class="progress-header">
+                        <span>Прогрес вивчення ({{ selectedSubject || 'усі предмети' }}):</span>
+                        <strong>{{ learnedPercent }}% ({{ learnedCount }} із {{ filteredNotes.length }})</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div
+                            class="progress-bar__fill"
+                            :class="{ 'progress-bar__fill--complete': learnedPercent === 100 }"
+                            :style="{ width: learnedPercent + '%' }"
+                        ></div>
+                    </div>
+                </div>
+
                 <p id="notes-count">Показано конспектів: {{ filteredNotes.length }} із {{ notes.length }}</p>
 
                 <div id="notes-list" class="cards-grid">

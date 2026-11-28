@@ -205,6 +205,15 @@ const app = Vue.createApp({
         filteredNotes() {
             if (!this.selectedSubject) return this.notes;
             return this.notes.filter((note) => note.subject === this.selectedSubject);
+        },
+        //кількість вивчених конспектів у поточному списку
+        learnedCount() {
+            return this.filteredNotes.filter((note) => note.learned).length;
+        },
+        //відсоток вивчених конспектів прогрес-бару
+        learnedPercent() {
+            if (this.filteredNotes.length === 0) return 0;
+            return Math.round((this.learnedCount / this.filteredNotes.length) * 100);
         }
     },
     methods: {
