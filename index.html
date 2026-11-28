@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
 </head>
 <body>
     
@@ -57,17 +56,20 @@
                 </form>
             </section>
 
-            <section class="subject-section">
+            <section id="app" class="subject-section">
                 <h2>Список конспектів</h2>
-                <p id="notes-count">Кількість конспектів: 0</p>
-                <button type="button" id="reload-btn" class="btn-submit">Оновити</button>
-                <p id="loading-status" hidden>Завантаження конспектів...</p>
-                <p id="error-message" style="color: #b91c1c; font-weight: 500;" hidden></p>
+                <p id="notes-count">Загальна кількість конспектів: {{ notes.length }}</p>
                 <div id="notes-list" class="cards-grid">
-                    <article class="card">
-                        <h3>Приклад теми конспекту</h3>
-                        <p>Предмет: Приклад предмета</p>
-                    </article>
+                        <note-summary
+                        v-for="note in notes"
+                        :key="note.id"
+                        :id="note.id"
+                        :subject="note.subject"
+                        :topic="note.topic"
+                        :pages="note.pages"
+                        :learned="note.learned"
+                        @toggle-learned="toggleLearned"
+                    ></note-summary>
                 </div>
             </section>
         </main>
@@ -84,5 +86,7 @@
         <p>&copy; 2026 Авторство: Солодкий Андрій Миколайович, ІП-52</p>
     </footer>
 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
