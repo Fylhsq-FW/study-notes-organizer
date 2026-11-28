@@ -26,13 +26,13 @@
     </header>
     
     <div class="page-layout">
-        <main>
+        <main id="app">
             <section class="subject-section">
-                <h2>Додати новий конспект</h2>
-                <form id="note-form" class="note-form">
+                <h2>{{ editingId ? 'Редагувати конспект' : 'Додати новий конспект' }}</h2>
+                <form @submit.prevent="saveNote" class="note-form">
                     <div class="form-group">
                         <label for="subject-select">Предмет:</label>
-                        <select id="subject-select" name="subject" required>
+                        <select id="subject-select" v-model="form.subject" required>
                             <option value="">-- Оберіть предмет --</option>
                             <option value="Вища математика">Вища математика</option>
                             <option value="Програмування">Програмування</option>
@@ -44,31 +44,56 @@
 
                     <div class="form-group">
                         <label for="topic-input">Тема конспекту:</label>
-                        <input type="text" id="topic-input" name="topic" required pattern=".{3,}" placeholder="Наприклад: Тема 2: Матриці">
+                        <input type="text" id="topic-input" v-model.trim="form.title" required minlength="3" placeholder="Наприклад: Тема 2: Матриці">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text-input">Короткий зміст:</label>
+                        <input type="text" id="text-input" v-model.trim="form.text" placeholder="Основні тези або формули">
                     </div>
 
                     <div class="form-group">
                         <label for="pages-input">Кількість сторінок:</label>
-                        <input type="number" id="pages-input" name="pages" required min="1" placeholder="15">
+                        <input type="number" id="pages-input" v-model.number="form.pages" required min="1" placeholder="15">
                     </div>
 
-                    <button type="submit" class="btn-submit">Додати конспект</button>
+                    <button type="submit" class="btn-submit">
+                        {{ editingId ? 'Зберегти зміни' : 'Додати конспект' }}
+                    </button>
+                    <button v-if="editingId" type="button" @click="cancelEdit" style="margin-left: 8px;">
+                        Скасувати
+                    </button>
                 </form>
             </section>
 
-            <section id="app" class="subject-section">
+            <section class="subject-section">
                 <h2>Список конспектів</h2>
-                <p id="notes-count">Загальна кількість конспектів: {{ notes.length }}</p>
+                <p v-if="dbError" style="color: #b00020; background: #fdecea; padding: 10px; border-radius: 6px; font-weight: bold;">
+                        ⚠️ {{ dbError }}
+                </p>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label for="filter-subject">Фільтр за предметом:</label>
+                    <select id="filter-subject" v-model="selectedSubject">
+                        <option value="">Усі предмети</option>
+                        <option value="Вища математика">Вища математика</option>
+                        <option value="Програмування">Програмування</option>
+                        <option value="Бази даних">Бази даних</option>
+                        <option value="Комп'ютерні мережі">Комп'ютерні мережі</option>
+                        <option value="Алгоритми">Алгоритми</option>
+                    </select>
+                </div>
+
+                <p id="notes-count">Показано конспектів: {{ filteredNotes.length }} із {{ notes.length }}</p>
+
                 <div id="notes-list" class="cards-grid">
-                        <note-summary
-                        v-for="note in notes"
+                    <note-summary
+                        v-for="note in filteredNotes"
                         :key="note.id"
-                        :id="note.id"
-                        :subject="note.subject"
-                        :topic="note.topic"
-                        :pages="note.pages"
-                        :learned="note.learned"
+                        :note="note"
                         @toggle-learned="toggleLearned"
+                        @edit-note="startEdit"
+                        @delete-note="deleteNote"
                     ></note-summary>
                 </div>
             </section>
